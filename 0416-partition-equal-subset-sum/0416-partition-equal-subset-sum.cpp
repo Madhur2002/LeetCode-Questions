@@ -22,8 +22,20 @@ public:
         if(sum%2 != 0) return false;
         else{
             int k = sum/2;
-            vector<vector<int>>dp(m, vector<int>(k+1, -1));
-            return solve(m-1, dp, nums, sum/2);
+            vector<vector<bool>>dp(m, vector<bool>(k+1, 0));
+            for(int i=0; i<m; i++){
+                dp[i][0] = true;
+            }
+            if(nums[0] <= k) dp[0][nums[0]] = true;
+            for(int i=1; i<m; i++){
+                for(int target=1; target<=k; target++){
+                    bool not_take = dp[i-1][target];
+                    bool take = false;
+                    if(nums[i] <= target) take = dp[i-1][target-nums[i]];
+                    dp[i][target] = take || not_take;
+                }
+            }
+            return dp[m-1][k];
         }
     }
 };
