@@ -1,16 +1,16 @@
 class Solution {
-private:
-    int solve(vector<vector<int>>dp, vector<int>& coin, int amount, int ind){
-        if(ind == 0){
-            if(amount % coin[0] == 0) return amount/coin[0];
-            return 1e9;
-        }
-        if(dp[ind][amount] != -1) return dp[ind][amount];
-        int not_take = solve(dp, coin, amount, ind-1);
-        int take = INT_MAX;
-        if(coin[ind] <= amount) take = 1 + solve(dp, coin, amount-coin[ind], ind);
-        return dp[ind][amount] = min(take, not_take);
-    }
+// private:
+//     int solve(vector<vector<int>>dp, vector<int>& coin, int amount, int ind){
+//         if(ind == 0){
+//             if(amount % coin[0] == 0) return amount/coin[0];
+//             return 1e9;
+//         }
+//         if(dp[ind][amount] != -1) return dp[ind][amount];
+//         int not_take = solve(dp, coin, amount, ind-1);
+//         int take = INT_MAX;
+//         if(coin[ind] <= amount) take = 1 + solve(dp, coin, amount-coin[ind], ind);
+//         return dp[ind][amount] = min(take, not_take);
+//     }
 public:
     int coinChange(vector<int>& coin, int amount) {
         int n = coin.size();
