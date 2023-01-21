@@ -25,7 +25,7 @@ private:
             solve(ind+1, nums, dots, ans, res, s);
             ans = ans + nums + ".";
             solve(ind+1, "", dots+1, ans, res, s);
-        }else return;
+        }
     }
 public:
     int n;
